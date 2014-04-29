@@ -31,13 +31,16 @@ $result = mysql_query($query);
 if (!$result) {
   die('Invalid query: ' . mysql_error());
 }
+if (!empty($lat)){
+  $insert = "INSERT INTO map (id, name, address, lat, lng) VALUES ( '', '$name', '$address', '$lat', '$lng')";
 
-$insert = "INSERT INTO map (id, name, address, lat, lng) VALUES ( '', '$name', '$address', '$lat', '$lng')";
+  $insertResult = mysql_query($insert);
+  if (!$insertResult) {
+    die('Invalid query: ' . mysql_error());
+  }
 
-$insertResult = mysql_query($insert);
-if (!$insertResult) {
-  die('Invalid query: ' . mysql_error());
 }
+
 
 header("Content-type: text/xml");
 
