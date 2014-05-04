@@ -2,6 +2,7 @@ var geocoder;
 var map;
 var lat;
 var lng;
+var infoWindows = [];
 var start = new google.maps.LatLng(55.706212, 12.537616);
 
 
@@ -76,10 +77,6 @@ function initialize(){
 
   showAllPoints();
 
-
-  google.maps.event.addListener(homeMarker, 'click', function() {
-          infoWindow.open(map,homeMarker);
-          });
 }
 
 
@@ -128,11 +125,10 @@ function showAllPoints(){
       var marker = new google.maps.Marker({
         map: map,
         position: point,
+        animation: google.maps.Animation.DROP,
         title: name
       });
-
-
-
+      infoWindows.push(infoWindow);
        bindInfoWindow(marker, map, infoWindow, html);
     }
   });
@@ -155,9 +151,17 @@ function downloadUrl(url, callback){
 
 function bindInfoWindow(marker, map, infoWindow, html) {
   google.maps.event.addListener(marker, 'click', function() {
+    closeAllInfoWindows();
     infoWindow.setContent(html);
     infoWindow.open(map, marker);
   });
+}
+
+//closes the info windows before another is opened. Only one info window is open at a time
+function closeAllInfoWindows(){
+  for (var i =0; i < infoWindows.length; i++){
+    infoWindows[i].close();
+  }
 }
 
 function doNothing(){
