@@ -1,7 +1,9 @@
-Google-Maps-Api
+Hidden Gems -- with Google-Maps-Api
 ===============
 
-Just trying to teach myself how to use the Google Maps api w/JS, PHP, and a SQL database
+This was a project to practice Google Maps API, AJAX, SQL, Javascript, and a bit of PHP.
+
+Enter your favorite hidden gem locations.
 
 You can enter an address.
 
